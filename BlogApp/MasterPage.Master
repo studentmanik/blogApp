@@ -1,0 +1,118 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="BlogApp.MasterPage" %>
+<%@ Import Namespace="BlogApp.Model" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Code Figher Blog Coding is the best way to learn Coding</title>
+    <link href="css_pirobox/UserControlCSS.css" rel="stylesheet" />
+    <link href="Style.css" rel="stylesheet" />
+    <meta name="keywords" content="Red Blog Theme, Free CSS Templates" />
+    <meta name="description" content="Red Blog Theme - Free CSS Templates by templatemo.com" />
+    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link href="editor/css/froala_editor.min.css" rel="stylesheet" />
+    <link href="editor/css/froala_style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+      <style>
+        
+
+        section {
+            width: 80%;
+            margin: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form id="forn1" runat="server">
+        
+      <div id="templatemo_top_wrapper">
+	<div id="templatemo_top">
+    
+        <div id="templatemo_menu">
+                    
+            <ul>
+                <li><a href="Home.aspx" class="current">Home</a></li>
+                <li><a href="about-us.aspx">About Us</a></li>
+                <li><a href="service.aspx">Services</a></li>
+                <li><a href="Contact.aspx">Contact Us</a></li>
+                
+            </ul>    	
+        
+        </div> <!-- end of templatemo_menu -->
+        
+        <div id="twitter1" >
+            <%
+                User anUser = (User) Session["aUser"];
+                if (anUser != null)
+            {%>
+            <a href="author-profile.aspx?id=<%Response.Write(anUser.UserId); %>"><% Response.Write(anUser.UserFullName);%></a>
+            <a href="UserControlPanel.aspx">My Post</a>
+            <a href="submit-post.aspx">Create Post</a><br />
+                <a href="logout.aspx">Logout</a>
+           <% }
+               else
+               {
+                   %> 
+            <a href="LoginPage.aspx">Login</a><br />
+        	<a href="SignUpPage.aspx">Sign Up</a>
+               <%  } %>
+        	
+        </div>
+        
+  </div>
+</div>  
+
+   <div id="templatemo_header_wrapper">
+	<div id="templatemo_header">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    	<asp:TextBox ID="searchTextBox" runat="server"></asp:TextBox>
+                    <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="searchButton_Click" />
+    
+    </div>
+</div>     
+
+   <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <div id="templatemo_main_top" >
+                <div id="templatemo_content" runat="server">
+        <asp:ContentPlaceHolder ID="post_content" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                    
+                     </div>
+                <div id="templatemo_sidebar">
+                    
+                    <asp:ContentPlaceHolder ID="sidebar" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                    </div>
+           <div class="cleaner"></div>
+
+            </div>
+
+        </div>
+
+        <div id="templatemo_main_bottom"></div>
+
+    </div>
+        
+        
+     <div id="templatemo_footer">
+
+    Copyright © 2015 <a href="Home.aspx">Code Fighter</a> 
+    
+</div>
+
+        <script src="js/validate.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+
+    </form>
+    
+ 
+</body>
+</html>
